@@ -22,6 +22,8 @@ var RoundController = function(Round) {
         }
         curRow.push(board.matchBoxes([board.boxNames[i]])[0]);
     }
+    //start playing the current round, store the result
+    this.result = this.round.start();
 };
 //inject dependencies
 RoundController.$inject = ["Round"];
