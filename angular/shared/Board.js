@@ -22,6 +22,7 @@ var BoardService = function (Line, Box) {
         //private properties that define board
         this._boxes = {};
         this._lines = {};
+        this._emptyBoxes = [];
         //setup board
         this.init(Line, Box);
          
@@ -31,9 +32,13 @@ var BoardService = function (Line, Box) {
     angular.extend(Board.prototype, {
         //method that creates the lines and boxes and layout for our board
         init: function (Line, Box) {
+            var newBox;
             //create boxes
             for (var i=0; i<this.boxNames.length; i++) {
-                this._boxes[this.boxNames[i]] = new Box();    
+                newBox = new Box();
+                this._boxes[this.boxNames[i]] = newBox;
+                //Add to empty boxes
+                this._emptyBoxes.push(newBox);
             }
             //create lines
             for (var i=0; i<this.lineNames.length; i++) {
@@ -87,6 +92,14 @@ var BoardService = function (Line, Box) {
         //returns the boxes of this board
         boxes: function () {
             return boxes;
+        },
+        //returns an array of empty boxes
+        getEmptyBoxes: function () {
+            return this._emptyBoxes;   
+        },
+        //removes a box from the array of empty boxes
+        fillBox: function (index) {
+            this._emptyBoxes.splice(index, 1);  
         }
     });
     //return Board constructor
