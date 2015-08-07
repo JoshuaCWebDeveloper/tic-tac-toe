@@ -10,11 +10,16 @@ var GameController = function(Game) {
     //create game
     var game = new Game(); 
     //init info
+    this.started = false;
+    this.finished = false;
     this.rounds = [];
     this.score = {};
     this.numRounds = 0;
     //method to start game
     this.start = function () {
+        //indicate game is now started, but not yet finished
+        this.started = true; 
+        this.finished = false;
         //take benchmark checkpoint
         benchmark.calcElapsed();
         //setup game
@@ -32,6 +37,8 @@ var GameController = function(Game) {
         this.numRounds = this.rounds.length;
         //store amount of time it took to play game
         this.timeLength = benchmark.calcElapsed()[0];
+        //indicate game is no finished
+        this.finished = true;
     };
 };
 //inject dependencies into controller
