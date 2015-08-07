@@ -1,0 +1,5 @@
+<table class="thumbnail">
+    <tr data-ng-repeat="row in info.boxes">    
+        <td data-ng-repeat="box in row">{{ box.getPlay() || '' }}</td>
+    </tr>
+</table>
