@@ -105,7 +105,7 @@ var BoardService = function (Line, Box) {
         //determine if there are any open lines on the board
         openLines: function () {
             //loop through the lines
-            for (name in this._lines) {
+            for (var name in this._lines) {
                 //if the line is open
                 if (this._lines[name].getStatus() == 'open') {
                     //we have at least one open line, return true
