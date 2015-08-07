@@ -100,6 +100,19 @@ var BoardService = function (Line, Box) {
         //removes a box from the array of empty boxes
         fillBox: function (index) {
             this._emptyBoxes.splice(index, 1);  
+        },
+        //determine if there are any open lines on the board
+        openLines: function () {
+            //loop through the lines
+            for (name in this._lines) {
+                //if the line is open
+                if (this._lines[name].getStatus() == 'open') {
+                    //we have at least one open line, return true
+                    return true;
+                }
+            }
+            //we never found any open lines
+            return false;
         }
     });
     //return Board constructor
