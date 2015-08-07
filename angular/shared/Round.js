@@ -31,19 +31,27 @@ var RoundService = function (Board) {
         //takes a turn at play (places either an 'X' or 'O' in an empty box)
         takeTurn: function (play) {
             //get empty boxes
-            var emptyBoxes = this.board().getEmptyBoxes(), 
-                boxIndex, boxLines;
+            var emptyBoxes = this.board().getEmptyBoxes(),
+                unplayed = true,
+                boxIndex, currentBox, boxLines;
             do {
                 //randomly select empty box to play in
                 boxIndex = Math.floor(Math.random() * emptyBoxes.length);
-                //the box will no longer be empty
-                this.board().fillBox(boxIndex);
+                console.log(boxIndex, emptyBoxes);
+                currentBox = emptyBoxes[boxIndex];
+                //if we successfully make a play
+                if (currentBox.setPlay(play)) {
+                    //don't loop again
+                    unplayed = false;
+                }
+                //the box is no longer be empty
+                emptyBoxes = this.board().fillBox(boxIndex);
                 //in case our box wasn't empty or the play wasn't otherwise successful, 
                 //keep trying until we find an empty one
             }
-            while (!emptyBoxes[boxIndex].setPlay(play));
+            while (unplayed);
             //get the lines of our chosen box
-            boxLines = emptyBoxes[boxIndex].lines();
+            boxLines = currentBox.lines();
             //loop through the box's lines
             for (var i=0; i<boxLines.length; i++) {
                 //update the status of the line, if we won
