@@ -18,7 +18,7 @@ var RoundService = function (Board) {
         this.init(Board);
         
     };
-    //add methods to our RoundController constructor
+    //add methods to our Round constructor
     angular.extend(Round.prototype, {
         //sets up the round
         init: function (Board) {
@@ -98,5 +98,5 @@ var RoundService = function (Board) {
 };
 //inject dependencies
 RoundService.$inject = ["Board"];
-//add controller to our app
+//add service to our app
 app.factory("Round", RoundService);
