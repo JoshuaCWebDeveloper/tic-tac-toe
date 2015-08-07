@@ -10,6 +10,15 @@ var BoardService = function (Line, Box) {
     //create Board constructor
     var Board = function () {
         
+        //public properties
+        //create names to use when referencing boxes
+        this.boxNames = ['A1', 'A2', 'A3', 
+                        'B1', 'B2', 'B3', 
+                        'C1', 'C2', 'C3'];
+        //create name to use when referencing lines 
+        //(three rows, three columns, two diagonals)
+        this.lineNames = ['A', 'B', 'C', '1', '2', '3', 'ABC', '123'];
+            
         //private properties that define board
         this._boxes = {};
         this._lines = {};
@@ -22,20 +31,13 @@ var BoardService = function (Line, Box) {
     angular.extend(Board.prototype, {
         //method that creates the lines and boxes and layout for our board
         init: function (Line, Box) {
-            //create names to use when referencing boxes
-            var boxNames = ['A1', 'A2', 'A3', 
-                            'B1', 'B2', 'B3', 
-                            'C1', 'C2', 'C3'],
-                //create name to use when referencing lines 
-                //(three rows, three columns, two diagonals)
-                lineNames = ['A', 'B', 'C', '1', '2', '3', 'ABC', '123'];
             //create boxes
-            for (var i=0; i<boxNames.length; i++) {
-                this._boxes[boxNames[i]] = new Box();    
+            for (var i=0; i<this.boxNames.length; i++) {
+                this._boxes[this.boxNames[i]] = new Box();    
             }
             //create lines
-            for (var i=0; i<lineNames.length; i++) {
-                this._lines[lineNames[i]] = new Line();
+            for (var i=0; i<this.lineNames.length; i++) {
+                this._lines[this.lineNames[i]] = new Line();
             }
             
             //setup layout of lines and boxes (used for game logic)
