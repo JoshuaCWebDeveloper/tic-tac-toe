@@ -4,7 +4,7 @@
  * Created: May 19, 2014
  * Version: 0.1.2
  */
-(function () {
+(function (window, undefined) {
     
     /* Use perfnow to support older browsers, BEGIN perfnow *****/
     /**
@@ -50,4 +50,4 @@
             return " -> " + curStats[0] + " (" + curStats[1] + ")";	
         }
     };
-})();
+})(window);
