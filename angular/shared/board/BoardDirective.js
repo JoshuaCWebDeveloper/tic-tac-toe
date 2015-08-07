@@ -10,7 +10,7 @@ app.directive("boardView", function () {
     return {
         restrict: 'E',
         scope: {
-            board: '='
+            info: '='
         },
         templateUrl: 'angular/shared/board/BoardTemplate.html'
     };
