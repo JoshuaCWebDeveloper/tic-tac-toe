@@ -15,6 +15,8 @@ var GameController = function(Game) {
     this.numRounds = 0;
     //method to start game
     this.start = function () {
+        //take benchmark checkpoint
+        benchmark.calcElapsed();
         //setup game
         game.init();
         //store game rounds
@@ -28,6 +30,8 @@ var GameController = function(Game) {
         };
         //count number of rounds
         this.numRounds = this.rounds.length;
+        //store amount of time it took to play game
+        this.timeLength = benchmark.calcElapsed()[0];
     };
 };
 //inject dependencies into controller
