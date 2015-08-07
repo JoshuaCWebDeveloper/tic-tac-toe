@@ -39,7 +39,6 @@ var RoundService = function (Board) {
             do {
                 //randomly select empty box to play in
                 boxIndex = Math.floor(Math.random() * emptyBoxes.length);
-                console.log(boxIndex, emptyBoxes);
                 currentBox = emptyBoxes[boxIndex];
                 //if we successfully make a play
                 if (currentBox.setPlay(play)) {
