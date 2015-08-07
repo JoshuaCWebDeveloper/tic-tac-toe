@@ -1,12 +1,13 @@
-/* RoundController.js 
- * Create controller class for single round of Tic-Tac-Toe.
+/* RoundDirective.js
+ * Controls and outputs everything for a round using the RoundTemplate.html
  * Dependencies: app module, Round service
  * Author: Joshua Carter
- * Created: August 06, 2015
+ * Created: August 06, 2014
  */
 "use strict";
-//create round controlller constructor
+//create controller function for round
 var RoundController = function(Round) {
+    console.log('controller');
     var board, curRow;
     //create round
     this.round = new Round();
@@ -25,7 +26,16 @@ var RoundController = function(Round) {
     //start playing the current round, store the result
     this.result = this.round.start();
 };
-//inject dependencies
+//inject dependencies into controller
 RoundController.$inject = ["Round"];
-//add controller to our app
-app.controller("RoundController", RoundController);
+//create directive for round and add to app
+app.directive("roundView", function () {
+    return {
+        restrict: 'E',
+        scope: {},
+        controller: RoundController,
+        controllerAs: 'roundInfo',
+        templateUrl: 'angular/shared/round/RoundTemplate.html'
+    };
+});
+ 
