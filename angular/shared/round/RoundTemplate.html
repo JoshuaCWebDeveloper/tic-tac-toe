@@ -1,0 +1,6 @@
+<board-view info="roundInfo"></board-view>
+    
+<div class="result">
+    <p data-ng-if="roundInfo.result == 'draw'">Draw!</p>
+    <p data-ng-if="roundInfo.result != 'draw'">Player {{ (roundInfo.result == 'X') ? 'X' : 'O' }} wins!!</p>
+</div>
