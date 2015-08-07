@@ -2,21 +2,21 @@
  * Simple ultra-lightweight tool that calculates elapsed time between checkpoints.
  * Author: Joshua Carter
  * Created: May 19, 2014
- * Version: 0.1
+ * Version: 0.1.1
  */
 (function () {
-    var newDate = new Date();
+    var newTime = window.performance.now();
     window.benchmark = {
-        start: newDate,
-        lastCalc: newDate,
+        start: newTime,
+        lastCalc: newTime,
         getTotalTime: function (from) {
-            return from.getTime() - this.start.getTime();
+            return from - this.start;
         },
         getCurTime: function (from) {
-            return from.getTime() - this.lastCalc.getTime();
+            return from - this.lastCalc;
         },
         calcElapsed: function () {
-            var now = new Date(),
+            var now = window.performance.now(),
                 curElaps = [this.getCurTime(now), this.getTotalTime(now)];
             //reset lastCalc
             this.lastCalc = now;
