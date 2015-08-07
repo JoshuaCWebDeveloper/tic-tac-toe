@@ -1,0 +1,28 @@
+<header  class="navbar-default navbar-fixed-top">
+    <h2 class="text-center">Automated Tic-Tac-Toe</h2>
+    <div class="scores center-block">
+        <div class="pull-left panel panel-default" data-ng-repeat="(player, score) in gameInfo.scores">
+            <p class="pull-left">{{ player }}</p>
+            <p class="pull-right">{{ score }}/10</p>
+        </div>
+    </div>
+</header>
+
+<main  class="container-fluid row">
+    <a id="start-game" class="btn btn-success" href="#" data-ng-hide="gameInfo.started" ng-click="gameInfo.start()">Start game</a>
+    
+    <div id="game-output" class="col-xs-12 center-block">
+        <div class="round" data-ng-repeat="round in gameInfo.rounds">
+            <round-view info="round"></round-view>
+        </div>
+    </div>
+</main>
+
+<footer class="navbar-default navbar-fixed-bottom" ng-show="gameInfo.finished">
+    <div class="center-block">
+        <p>
+            <span>Played <b>{{ gameInfo.numRounds }} rounds</b> in <b>{{ gameInfo.timeLength | number: 3 }} ms</b>.</span>
+            <a id="run-again" class="btn btn-success" href="#" ng-click="gameInfo.start()">Run Again</a>
+        </p>
+    </div>
+</footer>
