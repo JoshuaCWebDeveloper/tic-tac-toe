@@ -100,6 +100,7 @@ var BoardService = function (Line, Box) {
         //removes a box from the array of empty boxes
         fillBox: function (index) {
             this._emptyBoxes.splice(index, 1);  
+            return this._emptyBoxes;
         },
         //determine if there are any open lines on the board
         openLines: function () {
