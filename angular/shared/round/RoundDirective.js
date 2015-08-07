@@ -6,33 +6,35 @@
  */
 "use strict";
 //create controller function for round
-var RoundController = function(Round) {
-    console.log('controller');
-    var board, curRow;
-    //create round
-    this.round = new Round();
-    //create reference to round board
-    board = this.round.board();
-    //collect boxes into an ordered array of rows (left to right, top to bottom)
-    this.boxes = [];
+var RoundController = function($scope) {
+    //get current round and result from $scope
+    var round = $scope.info.round,
+        result = $scope.info.result, 
+        //create reference to round board
+        board = round.board(),
+        //collect boxes into an ordered array of rows (left to right, top to bottom)
+        boxes = [], curRow;
     //loop through ordered box names
     for (var i=0; i<board.boxNames.length; i++) {
         if (i % 3 == 0) {
-            this.boxes.push([]);
-            curRow = this.boxes[this.boxes.length - 1];
+            boxes.push([]);
+            curRow = boxes[boxes.length - 1];
         }
         curRow.push(board.matchBoxes([board.boxNames[i]])[0]);
     }
-    //start playing the current round, store the result
-    this.result = this.round.start();
+    //add info to scope using controller as syntax
+    this.result = result;
+    this.boxes = boxes;
 };
-//inject dependencies into controller
-RoundController.$inject = ["Round"];
+//inject scope into controller
+RoundController.$inject = ["$scope"];
 //create directive for round and add to app
 app.directive("roundView", function () {
     return {
         restrict: 'E',
-        scope: {},
+        scope: {
+            info: '='
+        },
         controller: RoundController,
         controllerAs: 'roundInfo',
         templateUrl: 'angular/shared/round/RoundTemplate.html'
