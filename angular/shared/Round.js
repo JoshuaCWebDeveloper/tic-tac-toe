@@ -12,6 +12,8 @@ var RoundService = function (Board) {
         
         //private properties that store state of our Round
         this._board = null;
+        this._gameOver = false;
+        this._playCount = 1;
         //setup Round
         this.init(Board);
         
@@ -62,6 +64,34 @@ var RoundService = function (Board) {
             }
             //we didn't win, so return false
             return false;
+        },
+        //starts game loop that executes until game is over
+        //will return the result of the game, either 'X' (winner), 'O' (winner), or 'draw'
+        start: function () {
+            //initialize game variables
+            //initialize player and opponent, X moves first
+            var player = 'X',
+                opponent = 'O',
+                swap;
+            //start the loop
+            while (!this._gameOver && this._playCount < 10) {
+                //have the player take a turn, if they win
+                if (this.takeTurn(player)) {
+                    //we have a winner!
+                    return player;
+                }   //else, the player lost, 
+                //if we are more than halfway through, check and see if there are still open lines
+                //if there are no open lines, it is a draw, stop playing, it's pointless
+                if (this._playCount > 4 && !this.board().openLines()) {
+                    return 'draw';
+                }
+                //swap player and opponent
+                swap = player, player = opponent, opponent = swap;
+                //increment the play count
+                this._playCount++;
+            }
+            //if we made it this far, something went wrong, just return draw
+            return 'draw';
         }
     });
     //return constructor
