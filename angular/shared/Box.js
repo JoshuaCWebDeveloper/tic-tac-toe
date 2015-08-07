@@ -5,13 +5,57 @@
  * Created: August 06, 2015
  */
 "use strict";
-//create Box service constructor
-var Box = function () {    
-    
-    //private properties to store the state of box
-    this._content = '';    
-    
-    return this;
+//create Box service
+var BoxService = function () {
+    //create Box constructor
+    var Box = function () {    
+        
+        //private static properties that define our box
+        this._lines = [];
+        //private properties to store the state of box
+        this._content = '';    
+        
+        return this;
+    };
+    //add methods to box constructor
+    angular.extend(Box.prototype, {
+        //returns true if box is empty, false if not
+        isEmpty: function () {
+            //if we are empty
+            if (this._content == '') {
+                return true;
+            }
+            return false;
+        },
+        //returns the play that has been made on the box ('X' or 'O'), 
+        //false if empty
+        getPlay: function () {
+            //if we aren't empty
+            if (!this.isEmpty()) {
+                return this._content;
+            }
+            return false;
+        },
+        //sets the play ('X' or 'O') on an empty box, if we aren't empty returns false
+        setPlay: function (play) {
+            //if we are empty
+            if (this.isEmpty()) {
+                this._content = play;
+                return play;
+            }
+            return false;
+        },
+        //gets the lines that this box belongs to
+        lines: function () {
+            return this._lines;    
+        },
+        //sets the lines that this box belongs to (array of Line objects)
+        setLines: function (lines) {
+            this._lines = lines;    
+        }
+    });
+    //return Box constructor
+    return Box;
 };
 //add box service to app
-app.factory("Box", Box);
+app.factory("Box", BoxService);
