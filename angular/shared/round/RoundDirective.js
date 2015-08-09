@@ -12,6 +12,8 @@ var RoundController = function($scope) {
         result = $scope.info.result, 
         //create reference to round board
         board = round.board(),
+        //get winning line
+        winningLine = round.getWinningLine(),
         //collect boxes into an ordered array of rows (left to right, top to bottom)
         boxes = [], curRow;
     //loop through ordered box names
