@@ -68,6 +68,12 @@ var RoundService = function (Board) {
                     return true;
                 }
             }
+            //at this point, we know we didn't win
+            //if this was the last play (there are no more empty boxes)
+            if (emptyBoxes.length < 1) {
+                //then the game is a draw, and there is no reason to record our last play
+                currentBox.empty();    
+            }
             //we didn't win, so return false
             return false;
         },
@@ -88,10 +94,11 @@ var RoundService = function (Board) {
                 if (this.takeTurn(player)) {
                     //we have a winner!
                     return player;
-                }   //else, the player lost, 
-                //if we are more than halfway through, check and see if there are still open lines
-                //if there are no open lines, it is a draw, stop playing, it's pointless
-                if (this._playCount > 4 && !this.board().openLines()) {
+                }   //else, the player didn't win, 
+                //if this was the last play, then since there is no winner yet, the game must be a draw
+                //else, if we are more than halfway through, check and see if there are still open lines
+                //  if there are no open lines, it is a draw, stop playing, it's pointless
+                if (this._playCount >= 9 || (this._playCount > 4 && !this.board().openLines())) {
                     return 'draw';
                 }
                 //swap player and opponent
