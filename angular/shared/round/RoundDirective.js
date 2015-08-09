@@ -39,6 +39,8 @@ var RoundController = function($scope) {
     //add info to scope using controller as syntax
     this.result = result;
     this.boxes = boxes;
+    this.wlPos = (winningLine in winStrikethroughs) ? 
+        winStrikethroughs[winningLine] : ['0', '0', '0', '0'];
 };
 //inject scope into controller
 RoundController.$inject = ["$scope"];
