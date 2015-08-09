@@ -75,9 +75,12 @@ var RoundService = function (Board) {
         //will return the result of the game, either 'X' (winner), 'O' (winner), or 'draw'
         start: function () {
             //initialize game variables
-            //initialize player and opponent, X moves first
-            var player = 'X',
-                opponent = 'O',
+            //initialize player and opponent, 
+            //randomly choose who moves first 
+            var players = ['X', 'O'],
+                randInd = Math.floor(Math.random() * 2),
+                player = players.splice(randInd, 1)[0],
+                opponent = players[0],
                 swap;
             //start the loop
             while (!this._gameOver && this._playCount < 10) {
