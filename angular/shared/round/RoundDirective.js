@@ -5,6 +5,18 @@
  * Created: August 06, 2014
  */
 "use strict";
+//create map of column strikethrough line positions (for indicating win)
+//lineName: [x1, y1, x2, y2] (in relation to SVG canvas)
+var winStrikethroughs = {
+    'A': ['0', '16.66%', '100%', '16.66%'], 
+    'B': ['0', '50%',    '100%', '50%'], 
+    'C': ['0', '83.33%', '100%', '83.33%'], 
+    '1': ['16.66%', '0', '16.66%', '100%'], 
+    '2': ['50%',    '0', '50%',    '100%'], 
+    '3': ['83.33%', '0', '83.33%', '100%'], 
+    'ABC': ['0', '0',    '100%', '100%'], 
+    '123': ['0', '100%', '100%', '0']
+};
 //create controller function for round
 var RoundController = function($scope) {
     //get current round and result from $scope
