@@ -9,10 +9,11 @@
 //create Line service 
 var LineService = function () {
     //create Line constructor
-    var Line = function () {    
+    var Line = function (name) {    
         
         //private static properties that define our line
         this._boxes = [];
+        this._name = name;
         //private properties that define the state of our line
         this._winner = false;
         this._status = 'open';
@@ -21,6 +22,10 @@ var LineService = function () {
     };
     //add methods to our line constructor
     angular.extend(Line.prototype, {
+        //gets the boxes name
+        getName: function () {
+            return this._name;
+        },
         //updates the status of our line
         updateStatus: function () {
             //default to win
