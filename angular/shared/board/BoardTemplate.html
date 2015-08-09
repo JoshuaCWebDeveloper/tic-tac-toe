@@ -1,5 +1,11 @@
-<table class="thumbnail">
-    <tr data-ng-repeat="row in info.boxes">    
-        <td data-ng-repeat="box in row">{{ box.getPlay() || '' }}</td>
-    </tr>
-</table>
+<div class="board">
+    <div class="grid thumbnail">
+        <div class="grid-row" data-ng-repeat="row in info.boxes">    
+            <div class="grid-box" data-ng-repeat="box in row">{{ box.getPlay() || '' }}</div>
+        </div>
+    </div>
+    
+    <svg data-ng-if="info.result != 'draw'">
+        <line x1="{{ info.wlPos[0] }}" y1="{{ info.wlPos[1] }}" x2="{{ info.wlPos[2] }}" y2="{{ info.wlPos[3] }}" /> 
+    </svg>
+</div>
