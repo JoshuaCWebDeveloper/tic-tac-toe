@@ -6,6 +6,7 @@
     </div>
     
     <svg data-ng-if="info.result != 'draw'">
-        <line x1="{{ info.wlPos[0] }}" y1="{{ info.wlPos[1] }}" x2="{{ info.wlPos[2] }}" y2="{{ info.wlPos[3] }}" /> 
+        <line data-ng-attr-x1="{{ info.wlPos[0] }}" data-ng-attr-y1="{{ info.wlPos[1] }}" 
+            data-ng-attr-x2="{{ info.wlPos[2] }}" data-ng-attr-y2="{{ info.wlPos[3] }}" /> 
     </svg>
 </div>
