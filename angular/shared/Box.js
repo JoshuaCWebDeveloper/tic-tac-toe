@@ -51,6 +51,11 @@ var BoxService = function () {
             }
             return false;
         },
+        //removes the current play from the box 
+        //(used if we make a play that is unnecessary)
+        empty: function () {
+            this._content = '';   
+        },
         //gets the lines that this box belongs to
         lines: function () {
             return this._lines;    
