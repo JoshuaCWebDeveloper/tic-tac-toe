@@ -14,6 +14,7 @@ var RoundService = function (Board) {
         this._board = null;
         this._gameOver = false;
         this._playCount = 1;
+        this._winningLine = '';
         //setup Round
         this.init(Board);
         
@@ -29,6 +30,10 @@ var RoundService = function (Board) {
         //returns the board object for this round
         board: function () {
             return this._board;    
+        },
+        //gets the name of the winning line
+        getWinningLine: function () {
+            return this._winningLine;
         },
         //takes a turn at play (places either an 'X' or 'O' in an empty box)
         takeTurn: function (play) {
@@ -57,6 +62,8 @@ var RoundService = function (Board) {
             for (var i=0; i<boxLines.length; i++) {
                 //update the status of the line, if we won
                 if (boxLines[i].updateStatus() == 'win') {
+                    //first, store this line as the winning line
+                    this._winningLine = boxLines[i].getName();
                     //stop everything, we won!
                     return true;
                 }
