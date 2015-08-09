@@ -34,7 +34,7 @@ var RoundController = function($scope) {
             boxes.push([]);
             curRow = boxes[boxes.length - 1];
         }
-        curRow.push(board.matchBoxes([board.boxNames[i]])[0]);
+        curRow.push(board.matchBoxes([board.boxNames[i]])[0].getPlay());
     }
     //add info to scope using controller as syntax
     this.result = result;

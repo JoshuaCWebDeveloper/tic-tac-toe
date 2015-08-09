@@ -1,7 +1,7 @@
 <div class="board">
     <div class="grid thumbnail">
         <div class="grid-row" data-ng-repeat="row in info.boxes">    
-            <div class="grid-box" data-ng-repeat="box in row">{{ box.getPlay() || '' }}</div>
+            <div class="grid-box" data-ng-repeat="box in row track by $index">{{ box || '' }}</div>
         </div>
     </div>
     
