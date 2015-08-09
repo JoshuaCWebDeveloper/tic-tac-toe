@@ -8,10 +8,11 @@
 //create Box service
 var BoxService = function () {
     //create Box constructor
-    var Box = function () {    
+    var Box = function (name) {    
         
         //private static properties that define our box
         this._lines = [];
+        this._name = name;
         //private properties to store the state of box
         this._content = '';    
         
@@ -19,6 +20,11 @@ var BoxService = function () {
     };
     //add methods to box constructor
     angular.extend(Box.prototype, {
+        //gets the boxes name
+        getName: function () {
+            console.log(this._name);
+            return this._name;
+        },
         //returns true if box is empty, false if not
         isEmpty: function () {
             //if we are empty
