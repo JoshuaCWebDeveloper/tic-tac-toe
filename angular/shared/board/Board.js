@@ -32,17 +32,19 @@ var BoardService = function (Line, Box) {
     angular.extend(Board.prototype, {
         //method that creates the lines and boxes and layout for our board
         init: function (Line, Box) {
-            var newBox;
+            var curName, newBox;
             //create boxes
             for (var i=0; i<this.boxNames.length; i++) {
-                newBox = new Box();
-                this._boxes[this.boxNames[i]] = newBox;
+                curName = this.boxNames[i];
+                newBox = new Box(curName);
+                this._boxes[curName] = newBox;
                 //Add to empty boxes
                 this._emptyBoxes.push(newBox);
             }
             //create lines
             for (var i=0; i<this.lineNames.length; i++) {
-                this._lines[this.lineNames[i]] = new Line();
+                curName = this.lineNames[i];
+                this._lines[this.lineNames[i]] = new Line(curName);
             }
             
             //setup layout of lines and boxes (used for game logic)
